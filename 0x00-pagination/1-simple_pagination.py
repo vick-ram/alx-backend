@@ -36,11 +36,11 @@ class Server:
         """Downloads and caches the dataset from the URL."""
         if self.__dataset is None:
             response = requests.get(self.DATA_URL)
-            response.raise_for_status()  # Ensure we got a successful response
+            response.raise_for_status()
             decoded_content = response.content.decode('utf-8').splitlines()
             reader = csv.reader(decoded_content)
             dataset = [row for row in reader]
-            self.__dataset = dataset[1:]  # Skip the header
+            self.__dataset = dataset[1:]
 
         return self.__dataset
 
@@ -48,13 +48,18 @@ class Server:
         """
         Returns a page of the dataset based on page and page_size.
         """
-        assert isinstance(
-            page, int) and page > 0, "Page number must be a positive integer"
-        assert isinstance(
-            page_size, int) and page_size > 0, "Page size must be a positive integer"
+        assert isinstance(page, int) and page > 0, (
+            "Page number must be a positive integer"
+        )
 
-        dataset = self.download_data()
-        start_index, end_index = index_range(page, page_size)
 
-        return dataset[start_index:end_index] if start_index < len(dataset) else [
-        ]
+assert isinstance(page_size, int) and page_size > 0, (
+    "Page size must be a positive integer"
+)
+
+dataset = self.download_data()
+start_index, end_index = index_range(page, page_size)
+
+return dataset[start_index:end_index] if start_index < len(
+    dataset
+) else []
