@@ -52,7 +52,6 @@ class Server:
             "Page number must be a positive integer"
         )
 
-
         assert isinstance(page_size, int) and page_size > 0, (
             "Page size must be a positive integer"
         )
