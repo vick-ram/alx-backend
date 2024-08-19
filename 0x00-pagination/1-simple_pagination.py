@@ -53,13 +53,13 @@ class Server:
         )
 
 
-assert isinstance(page_size, int) and page_size > 0, (
-    "Page size must be a positive integer"
-)
+        assert isinstance(page_size, int) and page_size > 0, (
+            "Page size must be a positive integer"
+        )
 
-dataset = self.download_data()
-start_index, end_index = index_range(page, page_size)
+        dataset = self.download_data()
+        start_index, end_index = index_range(page, page_size)
 
-return dataset[start_index:end_index] if start_index < len(
-    dataset
-) else []
+        return dataset[start_index:end_index] if start_index < len(
+            dataset
+        ) else []
