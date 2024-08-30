@@ -4,8 +4,6 @@ from flask import Flask, render_template
 from flask_babel import Babel
 
 
-app = Flask(__name__)
-
 
 class Config:
     """Config class"""
@@ -14,13 +12,14 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-ap.config.from_object(Config)
+app = Flask(__name__)
+app.config.from_object(Config)
 
 babel = Babel(app)
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """routing endpoint"""
     return render_template('1-index.html')
 
